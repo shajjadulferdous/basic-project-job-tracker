@@ -46,7 +46,7 @@ function ChangeButton(id){
 }
 
 document.querySelector('main').addEventListener('click' , function(event){
-     console.log(event.target);
+     // console.log(event.target);
      if(event.target.classList.contains('interview-btn')){
           const container = event.target.parentNode.parentNode;
           const title = container.querySelector('.title').innerText;
@@ -93,6 +93,18 @@ document.querySelector('main').addEventListener('click' , function(event){
           ChangeButton(lastID);
           setValue();
      }
+     else if (event.target.parentNode.classList.contains('delete-btn')){
+          console.log(event.target.parentNode.parentNode.parentNode);
+          const container = event.target.parentNode.parentNode.parentNode;
+          const title = container.querySelector('.title').innerText; 
+          
+          console.log(title);
+          rejectedContainers = rejectedContainers.filter(obj => obj.title !== title)
+          interviewContainers = interviewContainers.filter(obj => obj.title !== title)
+          event.target.parentNode.parentNode.parentNode.remove();   
+          ChangeButton(lastID);
+          setValue();
+     }
 });
 
 function renderInterview(){
@@ -117,7 +129,7 @@ function renderInterview(){
                  <h1 class="title font-bold text-xl">${newSection.title}</h1>
                  <p class="position">${newSection.position}</p>
                 </div>
-                <button class="p-4 rounded-full bg-base-200 cursor-pointer hover:bg-slate-600 hover:text-white active:scale-95"><i class="fa-solid fa-trash"></i></button>
+                <button class="delete-btn p-4 rounded-full bg-base-200 cursor-pointer hover:bg-slate-600 hover:text-white active:scale-95"><i class="fa-solid fa-trash"></i></button>
              </div>
              
              <p class="salary">${newSection.salary}</p>
@@ -135,7 +147,7 @@ function renderRejected(){
      if (rejectedContainers.length == 0){
            let div = document.createElement('div');
            div.className = `flex justify-center items-center h-[60vh] bg-white`;
-           div.innerHTML = `<div class="text-center flex flex-col">
+           div.innerHTML = `<div class="text-center flex  flex-col">
             <img src="./assignment_7959593 1.png" alt="">
             <h1 class="font-bold text-3xl">No jobs available</h1>
             <p>Check back soon for new job opportunities</p>
@@ -151,7 +163,7 @@ function renderRejected(){
                  <h1 class="title font-bold text-xl">${newSection.title}</h1>
                  <p class="position">${newSection.position}</p>
                 </div>
-                <button class="p-4 rounded-full bg-base-200 cursor-pointer hover:bg-slate-600 hover:text-white active:scale-95"><i class="fa-solid fa-trash"></i></button>
+                <button class="delete-btn p-4 rounded-full bg-base-200 cursor-pointer hover:bg-slate-600 hover:text-white active:scale-95"><i class="fa-solid fa-trash"></i></button>
              </div>
              
              <p class="salary">${newSection.salary}</p>
