@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-   <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" /> -->
+   <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body class="bg-base-200 h-[3000px]">
@@ -46,7 +46,9 @@
             <button onclick="ChangeButton('interview-jobs')" id="interview-jobs" class="bg-white py-2 px-4 rounded hover:bg-green-500 hover:text-white hover:cursor-pointer active:scale-95">Interview</button>
             <button onclick="ChangeButton('rejected-jobs')" id="rejected-jobs" class="bg-white py-2 px-4 rounded hover:bg-green-500 hover:text-white hover:cursor-pointer active:scale-95">Rejected</button>
         </div>
-
+         <section id="new-job-containers" class="hidden my-5 space-y-10">
+               
+         </section>
         <section id="jobContainers" class="jobList my-5 space-y-10">
 
            <div class="p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]">
@@ -58,7 +60,7 @@
                 <button class="p-4 rounded-full bg-base-200 cursor-pointer hover:bg-slate-600 hover:text-white active:scale-95"><i class="fa-solid fa-trash"></i></button>
              </div>
              
-             <p class="salary">Remote• Full-time • $130,000 - $175,000</p>
+             <p class="salary">Remote • Full-time • $130,000 - $175,000</p>
              <button class="status-ase bg-gray-300 px-4 py-2 rounded">Not Applied</button>
              <p class="details">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
              <div class="space-x-2">
@@ -90,7 +92,7 @@
             <div class="p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]">
                 <div class="flex justify-between">
                     <div>
-                        <h1  class="title font-bold text-xl">DataViz Solutions</h1>
+                        <h1 class="title font-bold text-xl">DataViz Solutions</h1>
                         <p class="position text-[14px]">Data Visualization Specialist</p>
                     </div>
                 <button class="p-4 rounded-full bg-base-200 cursor-pointer hover:bg-slate-600 hover:text-white active:scale-95"><i class="fa-solid fa-trash"></i></button>
