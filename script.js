@@ -11,10 +11,23 @@ function setValue(){
     for ( let x of total){
          x.innerText = value.children.length;
     }
+
+    if ( value.children.length == 0){
+          let div = document.createElement('div');
+          div.className = `flex justify-center items-center h-[60vh] bg-white`;
+          div.innerHTML = `<div class="text-center flex flex-col">
+            <img src="./assignment_7959593 1.png" alt="">
+            <h1 class="font-bold text-3xl">No jobs available</h1>
+            <p>Check back soon for new job opportunities</p>
+            </div>`;
+            value.appendChild(div); 
+    }
     interview.innerText = interviewContainers.length;
     rejected.innerText =  rejectedContainers.length;
 }
 setValue();
+
+
 function ChangeButton(id){
      const allBtn = document.querySelector('#all-jobs');
      const interviewBtn = document.querySelector('#interview-jobs')
@@ -46,7 +59,7 @@ function ChangeButton(id){
 }
 
 document.querySelector('main').addEventListener('click' , function(event){
-     // console.log(event.target);
+     console.log(event.target);
      if(event.target.classList.contains('interview-btn')){
           const container = event.target.parentNode.parentNode;
           const title = container.querySelector('.title').innerText;
@@ -93,15 +106,21 @@ document.querySelector('main').addEventListener('click' , function(event){
           ChangeButton(lastID);
           setValue();
      }
-     else if (event.target.parentNode.classList.contains('delete-btn')){
-          console.log(event.target.parentNode.parentNode.parentNode);
-          const container = event.target.parentNode.parentNode.parentNode;
-          const title = container.querySelector('.title').innerText; 
-          
+     else if (event.target.parentNode.classList.contains('delete-btn') || event.target.classList.contains('delete-btn')){
+          // console.log(event.target.parentNode.parentNode.parentNode);
+          const container = event.target.closest(".jobCard");
+          const title = container.querySelector('.title').innerText;      
           console.log(title);
+          const allJob = jobContainers.children;
+          for ( let  x of allJob){
+               const value = x.querySelector('.title').innerText;
+               if ( value == title){
+                    x.remove();
+                    break;
+               }
+          }
           rejectedContainers = rejectedContainers.filter(obj => obj.title !== title)
           interviewContainers = interviewContainers.filter(obj => obj.title !== title)
-          event.target.parentNode.parentNode.parentNode.remove();   
           ChangeButton(lastID);
           setValue();
      }
@@ -123,7 +142,7 @@ function renderInterview(){
      }
      for (let newSection of interviewContainers){
          let div = document.createElement('div');
-         div.className = `p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]`;
+         div.className = `jobCard p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]`;
          div.innerHTML = ` <div class="flex justify-between">
                 <div>
                  <h1 class="title font-bold text-xl">${newSection.title}</h1>
@@ -157,7 +176,7 @@ function renderRejected(){
      }
      for (let newSection of rejectedContainers){
          let div = document.createElement('div');
-         div.className = `p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]`;
+         div.className = `jobCard p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]`;
          div.innerHTML = ` <div class="flex justify-between">
                 <div>
                  <h1 class="title font-bold text-xl">${newSection.title}</h1>
