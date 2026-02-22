@@ -97,6 +97,18 @@ document.querySelector('main').addEventListener('click' , function(event){
 
 function renderInterview(){
      const newJobContainers = document.getElementById('new-job-containers');
+
+     if (interviewContainers.length == 0){
+           let div = document.createElement('div');
+           div.className = `flex justify-center items-center h-[60vh] bg-white`;
+           div.innerHTML = `<div class="text-center flex flex-col">
+            <img src="./assignment_7959593 1.png" alt="">
+            <h1 class="font-bold text-3xl">No jobs available</h1>
+            <p>Check back soon for new job opportunities</p>
+            </div>`
+           newJobContainers.appendChild(div);
+           return;
+     }
      for (let newSection of interviewContainers){
          let div = document.createElement('div');
          div.className = `p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]`;
@@ -120,6 +132,17 @@ function renderInterview(){
 }
 function renderRejected(){
      const newJobContainers = document.getElementById('new-job-containers');
+     if (rejectedContainers.length == 0){
+           let div = document.createElement('div');
+           div.className = `flex justify-center items-center h-[60vh] bg-white`;
+           div.innerHTML = `<div class="text-center flex flex-col">
+            <img src="./assignment_7959593 1.png" alt="">
+            <h1 class="font-bold text-3xl">No jobs available</h1>
+            <p>Check back soon for new job opportunities</p>
+            </div>`
+           newJobContainers.appendChild(div);
+           return;
+     }
      for (let newSection of rejectedContainers){
          let div = document.createElement('div');
          div.className = `p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]`;
