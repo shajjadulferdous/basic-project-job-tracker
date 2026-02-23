@@ -67,6 +67,8 @@ document.querySelector('main').addEventListener('click' , function(event){
           const salary = container.querySelector('.salary').innerText;
           const status = container.querySelector('.status-ase');
           const details = container.querySelector('.details').innerText;
+          status.classList.add('text-green-500')
+          status.classList.remove('text-red-500')
           status.innerText = 'INTERVIEW';
           const obj = {
               title,
@@ -78,7 +80,6 @@ document.querySelector('main').addEventListener('click' , function(event){
           if(!interviewContainers.some(obj => obj.title === title)){
               interviewContainers.push(obj);
           }
-          console.log(interviewContainers);
           rejectedContainers = rejectedContainers.filter(obj => obj.title !== title)
           setValue(); 
           ChangeButton(lastID);   
@@ -90,7 +91,10 @@ document.querySelector('main').addEventListener('click' , function(event){
           const salary = container.querySelector('.salary').innerText;
           const status = container.querySelector('.status-ase');
           const details = container.querySelector('.details').innerText;
+          status.classList.remove('text-green-500')
+          status.classList.add('text-red-500')
           status.innerText = 'REJECTED';
+          console.log(status);
           const obj = {
               title,
               position,
@@ -102,12 +106,10 @@ document.querySelector('main').addEventListener('click' , function(event){
               rejectedContainers.push(obj);
           }
           interviewContainers = interviewContainers.filter(obj => obj.title !== title)
-          console.log(rejectedContainers);
           ChangeButton(lastID);
           setValue();
      }
      else if (event.target.parentNode.classList.contains('delete-btn') || event.target.classList.contains('delete-btn')){
-          // console.log(event.target.parentNode.parentNode.parentNode);
           const container = event.target.closest(".jobCard");
           const title = container.querySelector('.title').innerText;      
           console.log(title);
@@ -142,7 +144,7 @@ function renderInterview(){
      }
      for (let newSection of interviewContainers){
          let div = document.createElement('div');
-         div.className = `jobCard p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]`;
+         div.className = `jobCard p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-1  `;
          div.innerHTML = ` <div class="flex justify-between">
                 <div>
                  <h1 class="title font-bold text-xl">${newSection.title}</h1>
@@ -152,7 +154,7 @@ function renderInterview(){
              </div>
              
              <p class="salary">${newSection.salary}</p>
-             <button class="status-ase bg-gray-300 px-4 py-2 rounded">${newSection.statusValue}</button>
+             <button class="status-ase bg-gray-300 text-green-500 px-4 py-2 rounded">${newSection.statusValue}</button>
              <p class="details">${newSection.details}</p>
              <div class="space-x-2">
                 <button  class="interview-btn px-4 py-2 font-bold border-green-400 border-2 text-green-500 transition-all duration-300 active:scale-95 hover:bg-green-500 hover:text-white hover:cursor-pointer rounded">INTERVIEW</button>
@@ -176,7 +178,7 @@ function renderRejected(){
      }
      for (let newSection of rejectedContainers){
          let div = document.createElement('div');
-         div.className = `jobCard p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  hover:scale-[1.02]`;
+         div.className = `jobCard p-8 bg-white space-y-3 transition-all duration-300 hover:-translate-y-2  `;
          div.innerHTML = ` <div class="flex justify-between">
                 <div>
                  <h1 class="title font-bold text-xl">${newSection.title}</h1>
@@ -186,7 +188,7 @@ function renderRejected(){
              </div>
              
              <p class="salary">${newSection.salary}</p>
-             <button class="status-ase bg-gray-300 px-4 py-2 rounded">${newSection.statusValue}</button>
+             <button class="status-ase bg-gray-300 text-red-500 px-4 py-2 rounded">${newSection.statusValue}</button>
              <p class="details">${newSection.details}</p>
              <div class="space-x-2">
                 <button  class="interview-btn px-4 py-2 font-bold border-green-400 border-2 text-green-500 transition-all duration-300 active:scale-95 hover:bg-green-500 hover:text-white hover:cursor-pointer rounded">INTERVIEW</button>
