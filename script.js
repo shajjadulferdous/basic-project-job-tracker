@@ -11,13 +11,16 @@ function setValue(){
     for ( let x of total){
          x.innerText = value.children.length;
     }
-     const jobShow = document.querySelector('#ok-jobs');
-     if (lastID == 'interview-jobs'){
-          jobShow.innerText = interviewContainers.length;
-     }
-     else if (lastID == 'rejected-jobs'){
-          jobShow.innerText = rejectedContainers.length;
-     }
+    const okjobs = document.getElementById('ok-jobs');
+    if (lastID == 'all-jobs'){
+        okjobs.innerText = value.children.length;
+    }
+    if (lastID == 'interview-jobs'){
+        okjobs.innerText = interviewContainers.length;
+    }
+    if (lastID == 'rejected-jobs'){
+        okjobs.innerText = rejectedContainers.length;
+    }
     if ( value.children.length == 0){
           let div = document.createElement('div');
           div.className = `flex justify-center items-center h-[60vh] bg-white`;
@@ -49,24 +52,23 @@ function ChangeButton(id){
      btn.classList.add('bg-green-500' , 'text-white');
      const newJobContainers = document.getElementById('new-job-containers');
      newJobContainers.innerHTML = '';
+     const okjobs = document.getElementById('ok-jobs');
      if (id === 'all-jobs'){
          newJobContainers.classList.add('hidden');
          jobContainers.classList.remove('hidden');
-        
      }else if (id === 'interview-jobs'){
           jobContainers.classList.add('hidden');
           newJobContainers.classList.remove('hidden');
           renderInterview();
-         
+          okjobs.innerText = interviewContainers.length;
      }else{
            jobContainers.classList.add('hidden');
            newJobContainers.classList.remove('hidden');
            renderRejected();
-          const jobShow = document.querySelector('#ok-jobs');
-          jobShow.innerText = rejectedContainers.length;
+           okjobs.innerText = rejectedContainers.length;
      }
      lastID = id;
-     setValue();
+
 }
 
 document.querySelector('main').addEventListener('click' , function(event){
@@ -93,8 +95,7 @@ document.querySelector('main').addEventListener('click' , function(event){
           }
           rejectedContainers = rejectedContainers.filter(obj => obj.title !== title)
           setValue(); 
-          ChangeButton(lastID);  
-           
+          ChangeButton(lastID);   
      }
      else if(event.target.classList.contains('rejected-btn')){
           const container = event.target.parentNode.parentNode;
@@ -138,9 +139,6 @@ document.querySelector('main').addEventListener('click' , function(event){
           ChangeButton(lastID);
           setValue();
      }
-     
-     
-
 });
 
 function renderInterview(){
