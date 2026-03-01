@@ -1,6 +1,7 @@
 let interviewContainers = []
 let rejectedContainers = []
 let lastID = 'all-jobs';
+let flag = 0;
 const jobContainers = document.querySelector('#jobContainers');
 
 function setValue(){
@@ -14,6 +15,7 @@ function setValue(){
     const okjobs = document.getElementById('ok-jobs');
     if (lastID == 'all-jobs'){
         okjobs.innerText = value.children.length;
+        if (value.children.length == 0) flag = 1;
     }
     if (lastID == 'interview-jobs'){
         okjobs.innerText = interviewContainers.length;
@@ -56,6 +58,11 @@ function ChangeButton(id){
      if (id === 'all-jobs'){
          newJobContainers.classList.add('hidden');
          jobContainers.classList.remove('hidden');
+         if (flag ) okjobs.innerText = 0;
+         else{
+             const value = document.getElementById('jobContainers');
+             okjobs.innerText = value.children.length;
+         }
      }else if (id === 'interview-jobs'){
           jobContainers.classList.add('hidden');
           newJobContainers.classList.remove('hidden');
